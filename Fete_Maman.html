@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Bonne fête maman !</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.js"></script>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: #f0e6ff;
+        }
+        #square {
+            border : 2px solid black;
+            border-radius: 12px;
+            background-color: #FAF9F6;
+            width: 500px;
+            height: 200px;
+
+            position: absolute;
+            top: 75%;
+            left: 38%;
+            
+        }
+        .line, .lineMirrored {
+            width: 55%;   /* La largeur est maintenant en % du carré */
+            height: 2px;
+            background-color: black;
+            position: absolute;
+            top: 30%;      /* Milieu vertical du carré */
+        }
+
+        .line1 {
+            left: -2%;     /* Proportionnellement par rapport au carré */
+            transform: rotate(25deg);
+        }
+
+        .line2 {
+            left: 47%;     /* Proportionnellement par rapport au carré */
+            transform: rotate(-25deg);
+        }
+        canvas {
+            border: 2px solid #8e44ad;
+            border-radius: 12px;
+        }
+        .message {
+        position: absolute;
+        top: 70%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 'Comic Sans MS', sans-serif;
+        color: #333;
+    }
+        
+    </style>
+</head>
+<body>
+    <script>
+        function setup() {
+            createCanvas(400, 400);
+            angleMode(DEGREES);
+        }
+
+        function draw() {
+            background(240, 230, 255);
+            translate(width / 2, height / 2);
+
+            // Animation de la fleur
+            let petalCount = 8;
+            let petalSize = 50 + 10 * sin(frameCount * 3);
+
+            for (let i = 0; i < petalCount; i++) {
+                push();
+                rotate((360 / petalCount) * i);
+                fill(255, 100, 150);
+                ellipse(0, 70, petalSize, petalSize * 1.5);
+                pop();
+            }
+
+            // Coeur de la fleur
+            fill(255, 200, 0);
+            ellipse(0, 0, 60);
+
+            // Texte de souhait
+            fill(0);
+            textAlign(CENTER, CENTER);
+            textSize(20);
+            text("Bonne fête maman!", 0, 150);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const bouton = document.getElementById("square");
+            bouton.addEventListener("click", function() {
+                window.open("https://cdn.discordapp.com/attachments/1212852209491116113/1376078259476762715/image.png?ex=6834043f&is=6832b2bf&hm=cae6e70927c5160bb117e66354dff20c3570b4dc4a40da5ffb0460eae6848e05&", "_blank");
+                console.log("Clic sur le bouton !");
+            });
+        });
+    </script>
+    <div id="square">
+        <p class="message">Appuie</p>
+        <div class="line line1"></div>
+        <div class="lineMirrored line2"></div>
+    </div>
+    
+</body>
+</html>
